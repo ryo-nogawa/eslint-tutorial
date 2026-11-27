@@ -14,15 +14,20 @@ export default defineConfig([
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
     plugins: { js },
     extends: ["js/recommended"],
-    languageOptions: { globals: globals.browser },
+    languageOptions: {
+      globals: globals.browser,
+      parserOptions: { projectService: true },
+    },
   },
   { files: ["**/*.js"], languageOptions: { sourceType: "script" } },
   tseslint.configs.recommended,
+  tseslint.configs.recommendedTypeChecked,
   {
     rules: {
       "no-console": "warn",
       camelcase: ["warn", { properties: "never" }],
       "@stylistic/semi": ["warn", "always"],
+      "@typescript-eslint/switch-exhaustiveness-check": "warn",
     },
   },
 ]);
